@@ -1,0 +1,1 @@
+Plan-a-Day helps you plan out `what you want to do` or `where you want to eat` based on a `location`.
