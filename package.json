@@ -1,0 +1,38 @@
+{
+  "name": "plan_a_day",
+  "version": "0.0.1",
+  "description": "create a list of where to eat and what to do anywhere you go",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dustin520/plan_a_day.git"
+  },
+  "author": "dustin_yu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dustin520/plan_a_day/issues"
+  },
+  "homepage": "https://github.com/dustin520/plan_a_day",
+  "dependencies": {
+    "bcrypt": "^0.7.8",
+    "body-parser": "^1.5.2",
+    "chai": "^1.9.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.3.2",
+    "cookie-session": "^1.0.2",
+    "ejs": "^1.0.0",
+    "express": "^4.7.2",
+    "lodash": "^2.4.1",
+    "method-override": "^2.1.2",
+    "mocha": "^1.21.3",
+    "passport": "^0.2.0",
+    "passport-local": "^1.0.0",
+    "pg": "^3.4.0",
+    "request": "^2.39.0",
+    "sequelize": "^1.7.9",
+    "sequelize-cli": "^0.2.3"
+  }
+}
