@@ -2,17 +2,17 @@
 
 <html>
 	<head>
-		<title>Home</title>
+		<title>Results</title>
 		<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="/styles/main.css">
 	</head>
 	<body>
 		<% if(!isAuthenticated) { %>
-			<a href='/login'>You must be logged in to view this page</a>
+			<a href='/login'>You must be logged in to view the results</a>
 
 		<% } else { %>
 
-		<h1>Welcome Home <%= user.username %>!</h1>
+		<h1>Results</h1>
 		<nav>
 			<hr>
 			<button><a href="/home">Home</a></button>
@@ -22,10 +22,9 @@
 			<hr>
 		</nav>
 
-		<h2>Personal Checklist</h2>
+		<h2>Search Results</h2><br>
 
 
-
-		<% } %> 
+		<% } %>
 
 <% include ../partials/footer %>

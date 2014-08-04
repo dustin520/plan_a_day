@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 
 <html>
-<head>
-	<title>DayPlan</title>
-</head>
-<body>
-	<h1>Welcome to DayPlan!</h1>
-	<h2>Plan It All</h2>
+	<head>
+		<title>DayPlan</title>
+		<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	</head>
+	<body>
+		<h1>Welcome to DayPlan!</h1>
+		<h2>The App to Plan It All</h2>
+		<p style="color: green">
+			<% if (message) { %>
+			<%= message %>
+			<% } %><br>
+		</p>
 
-</body>
-</html>
+		<button class="btn btn-lg"><a href="/login">Log In</a></button>
+		<button class="btn btn-lg"><a href="/signup">Sign Up</a></button>
+
+
+<% include ../partials/footer %>

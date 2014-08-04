@@ -1,10 +1,32 @@
 <!DOCTYPE html>
 
 <html>
-<head>
-	<title>Location</title>
-</head>
-<body>
+	<head>
+		<title>Location</title>
+		<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/styles/main.css">
+	</head>
+	<body>
+		<% if(!isAuthenticated) { %>
+			<a href='/login'>You must be logged in to view this page</a>
 
-</body>
-</html>
+		<% } else { %>
+
+		<h1>Location</h1>
+		<nav>
+			<hr>
+			<button><a href="/home">Home</a></button>
+			<button><a href="/search">Search</a></button>
+			<button><a href="/results">Results</a></button>
+			<button><a href="/logout">Log Out</a></button>
+			<hr>
+		</nav>
+
+		<div>
+			
+
+		</div>
+
+		<% } %> 
+
+<% include ../partials/footer %>

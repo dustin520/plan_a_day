@@ -1,3 +1,4 @@
+
 # DayPlan
 
 ## Plan-a-Day App
@@ -13,19 +14,36 @@ An app to plan out `what you want to do` or `where you want to eat` based on a `
 * add items to your personal checklist
 
 ### MVP
-* 2 Models with association
-* partials and views
-* handle invalid data for incorrect input, display error messages, validate sign up
-* secure passwords
+* 2 Models with association - CHECK
+* partials and views - IN PROGRESS
+* handle invalid data for incorrect input, display error messages, validate sign up -CHECK
+* secure passwords - CHECK
 * external APIs
 * Heroku Deployment
-* Authentication and Authorization
+* Authentication and Authorization - IN PROGRESS
 * Testing - request specs that verify pages return 200 response and model specs that verify validations 
 
+### Complete
+* validate input for user length, password length, duplicate user with messages upon sign up
+* secure passwords - hash/salt, saved in db
 
 ### In Progress
 * figure out api 
 * set up routes
+* authentication 
+
+### Issues
+* flash messages not working - messages worked with authorize, not after implementing passportLocal 
+
+### Questions
+* Below -
+1. 
+	res.render('app/home', {
+		isAuthenticated: req.isAuthenticated(),
+		user: req.user // ?? user or planner ?? why user? 
+	}); 
+2. supposed to be `loginMessage`? or just {message} ??
+	return done(err, flash('loginMessage', 'Oops, something went wrong'))
 
 ### Additional
 * category column for checklist
@@ -33,6 +51,7 @@ An app to plan out `what you want to do` or `where you want to eat` based on a `
 * map interface
 * option to add multiple items to list before routing,  or redirect immediately 
 * delete and update checklist 
+* log in immediately with sign up
 
 
 
