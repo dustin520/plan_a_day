@@ -20,20 +20,23 @@ An app to plan out `what you want to do` or `where you want to eat` based on a `
 * secure passwords - CHECK
 * external APIs
 * Heroku Deployment
-* Authentication and Authorization - IN PROGRESS
+* Authentication and Authorization - CHECK 
 * Testing - request specs that verify pages return 200 response and model specs that verify validations 
 
 ### Complete
 * validate input for user length, password length, duplicate user with messages upon sign up
 * secure passwords - hash/salt, saved in db
+* authentication/authorization 
 
 ### In Progress
 * figure out api 
 * set up routes
-* authentication 
+* if no search and press enter, alert user
+* if no search, but click results, make sure results redirects to search/home
 
 ### Issues
-* flash messages not working - messages worked with authorize, not after implementing passportLocal 
+* flash messages not working - messages worked with authorize, not after implementing passportLocal - FIXED
+	fix = <% if(typeof message !== 'undefined') { %>
 
 ### Questions
 * Below -
@@ -44,6 +47,8 @@ An app to plan out `what you want to do` or `where you want to eat` based on a `
 	}); 
 2. supposed to be `loginMessage`? or just {message} ??
 	return done(err, flash('loginMessage', 'Oops, something went wrong'))
+	- fixed with
+	 message: req.flash('loginMessage') 
 
 ### Additional
 * category column for checklist
@@ -52,6 +57,7 @@ An app to plan out `what you want to do` or `where you want to eat` based on a `
 * option to add multiple items to list before routing,  or redirect immediately 
 * delete and update checklist 
 * log in immediately with sign up
+* search on each page, so can use app without loggin in, but can't save
 
 
 

@@ -20,9 +20,9 @@ app.use(express.static(__dirname + 'public'));
 
 // cookie session set up
 app.use(cookieSession({
-	secret: 'secretkey',
+	secret: 'notsosecretkey',
 	name: 'cookie created by me',
-	maxage: 360000 // 6 min logout timer 
+	maxage: 720000 // 12 min logout timer 
 }));
 
 // more middleware config - for authorization/authentication
@@ -48,22 +48,41 @@ passport.deserializeUser(function(id, done) {
 	});
 });
 
+// *** req Yelp API access setup ***
+var yelp = require("yelp").createClient({ 
+	consumer_key: process.env.YELP_KEY,
+	consumer_secret: process.env.YELP_SECRET,
+	token: process.env.YELP_TOKEN,
+	token_secret: process.env.YELP_TOKEN_SECRET
+});
 
 // *** GETS ***
 
 // landing page
 app.get("/", function(req, res) {
-	res.render('site/index', {message: null});
+	if (!req.user) { // ??? when was req.user defined ??? 
+		res.render('site/index', {message: null});
+	} else {
+		res.redirect('/home'); 
+	}
 });
 
 // login page
 app.get("/login", function(req, res) {
-	res.render('site/login', {message: null, username: ""});
+	if (!req.user) {
+		res.render('site/login', {message: req.flash('loginMessage'), username: ""});
+	} else {
+		res.redirect('home');
+	}
 });
 
 // signup page
 app.get("/signup", function(req, res) {
-	res.render('site/signup', {message: null, username: ""});
+	if (!req.user) {
+		res.render('site/signup', {message: req.flash('loginMessage'), username: ""});
+	} else {
+		res.redirect('home');
+	}
 });
 
 // app home page
@@ -82,6 +101,24 @@ app.get("/search", function(req, res) {
 	});
 });
 
+// get search param from search.ejs to post on results.ejs 
+app.get('/searchFor', function(req, res) {
+	var queryCat = req.query.searchCat || "food";
+	var queryCity = req.query.searchCity || "New York";
+	var queryZip = req.query.searchZip || 91326; // string or number ???
+	// console.log(req.query);
+	yelp.search({term: queryCat, location: queryCity}, function(error, data) {
+	  console.log(error);
+	  console.log(data); 
+	  var list = data.businesses; 
+	  // res.send(data.businesses); // test
+  	res.render('app/results.ejs', {searchList: list || [], 
+  		isAuthenticated: req.isAuthenticated(),
+  		user: req.user
+  	}); 
+	});
+});
+
 // app results page
 app.get("/results", function(req, res) {
 	res.render('app/results', {
@@ -90,11 +127,26 @@ app.get("/results", function(req, res) {
 	});
 });
 
-// app location page
-app.get("/location", function(req, res) {
-	res.render('app/location', {
+
+// // app location page
+// app.get("/location", function(req, res) {
+// 	res.render('app/location', {
+// 		isAuthenticated: req.isAuthenticated(),
+// 		user: req.user 
+// 	});
+// });
+
+// app location by id 
+app.get("/location/:id", function(req, res){
+	var businessId = req.params.id;
+	yelp.business(businessId, function(error, data) { // another way to do it without 2nd request??
+		console.log(error);
+		console.log(data);
+		var detail = data;
+		res.render('app/location.ejs', {detail: data || [], 
 		isAuthenticated: req.isAuthenticated(),
-		user: req.user 
+  		user: req.user
+		});
 	});
 });
 

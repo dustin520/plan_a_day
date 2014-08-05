@@ -12,7 +12,7 @@
 
 		<% } else { %>
 
-		<h1>Location</h1>
+		<h1>Check this Out!</h1>
 		<nav>
 			<hr>
 			<button><a href="/home">Home</a></button>
@@ -23,9 +23,14 @@
 		</nav>
 
 		<div>
-			
-
+			<h1> <%= detail.name %> </h1>
+			<p> <img src="<%= detail.rating_img_url_large %>" /> <%= detail.review_count %> Reviews</p>
+			<p> Type: <%= detail.categories %> </p>
+			<p> <img src="<%= detail.image_url %>" /> </p>
+			<p> <%= detail.snippet_text %> </p>
 		</div>
+
+		<button>Save</button> 
 
 		<% } %> 
 

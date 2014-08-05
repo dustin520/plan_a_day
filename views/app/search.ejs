@@ -22,14 +22,21 @@
 			<hr>
 		</nav>
 
-		<form method="post" action="/search">
+		<form method="get" action="/searchFor">  <!-- why get, not post  -->
 			<p>
-				<label for="city">Search by City: </label>
-				<input type="text" name="city" id="city" placeholder="Enter city" autofocus>
+				<label for="cat">Search for: </label> 
+				<input type="text" name="searchCat" id="cat" placeholder="Food or Fun" autofocus> 
 			</p>
 			<p>
-				<label for="zip">Search by Zipcode: </label>
-				<input type="text" name="zip" id="zipcode" placeholder="Enter zip">
+				<label for="city">Search by City: </label>
+				<input type="text" name="searchCity" id="city" placeholder="Enter city">
+			</p>
+			<p>
+				<label for="zipcode">Search by Zipcode: </label>
+				<input type="text" name="searchZip" id="zipcode" placeholder="Enter zip">
+			</p>
+			<p>
+				<input type="submit" value="Submit">
 			</p>
 
 		</form> 

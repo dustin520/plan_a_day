@@ -24,6 +24,19 @@
 
 		<h2>Search Results</h2><br>
 
+			<% searchList.forEach(function (item) { %>
+			<p>
+				<a href="/location/<%= item.id %>"><%= item.name %></a> 
+				<ul>
+					<li> Rating: <%= item.rating %> </li>
+					<li> Reviews: <%= item.review_count %> </li>
+					<li> Type: <%= item.categories %> </li>
+					<li> <%= item.snippet_text %> </li>
+				</ul>
+				<button>Save</button>
+			</p>	
+			<% }) %> 
+
 
 		<% } %>
 
