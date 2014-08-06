@@ -20,7 +20,7 @@ app.use(express.static(__dirname + 'public'));
 
 // cookie session set up
 app.use(cookieSession({
-	secret: process.env.COOKIE_SESSION_KEY,
+	secret: "hello",
 	name: 'cookie created by me',
 	maxage: 1440000 // 24 min logout timer 
 }));
