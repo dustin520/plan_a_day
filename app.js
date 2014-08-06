@@ -15,12 +15,14 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true})); // what is `extended: true`
 app.use(express.static(__dirname + 'public'));
 
+require('locus'); 
+
 
 // *** SESSION PREP *** 
 
 // cookie session set up
 app.use(cookieSession({
-	secret: "hello",
+	secret: process.env.COOKIE_SESSION_KEY,
 	name: 'cookie created by me',
 	maxage: 1440000 // 24 min logout timer 
 }));
