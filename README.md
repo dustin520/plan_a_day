@@ -29,10 +29,13 @@ An app to plan out `what you want to do` or `where you want to eat` based on a `
 * authentication/authorization 
 
 ### In Progress
-* figure out api 
-* set up routes
+* figure out api restictions, etc 
+* set up reamining routes
 * if no search and press enter, alert user
 * if no search, but click results, make sure results redirects to search/home
+* search without account
+* request specs and server test 
+
 
 ### Issues
 * flash messages not working - messages worked with authorize, not after implementing passportLocal - FIXED

@@ -24,7 +24,7 @@
 
 		<h2>Search Results</h2><br>
 
-			<% searchList.forEach(function (item) { %>
+		<% searchList.forEach(function (item) { %>
 			<p>
 				<a href="/location/<%= item.id %>"><%= item.name %></a> 
 				<ul>
@@ -33,11 +33,20 @@
 					<li> Type: <%= item.categories %> </li>
 					<li> <%= item.snippet_text %> </li>
 				</ul>
-				<button>Save</button>
+
+				<form method="post" action="/saveNow">
+					<input type="hidden" name="placeName" value="<%= item.name %>">
+					<input type="hidden" name="planner" value="<%= user.id %>">
+					<button type="submit">Save</button> 
+				</form> 
+				
 			</p>	
+
 			<% }) %> 
+		
+		<% } %>  
 
-
-		<% } %>
 
 <% include ../partials/footer %>
+
+

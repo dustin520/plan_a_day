@@ -112,7 +112,7 @@ app.get('/searchFor', function(req, res) {
 	  console.log(data); 
 	  var list = data.businesses; 
 	  // res.send(data.businesses); // test
-  	res.render('app/results.ejs', {searchList: list || [], 
+  	res.render('app/results', {searchList: list || [], 
   		isAuthenticated: req.isAuthenticated(),
   		user: req.user
   	}); 
@@ -252,7 +252,7 @@ app.get('*', function(req, res) {
 	res.render("site/404");
 });
 
-app.listen(3000, function() {
+app.listen(process.env.PORT || 3000, function() {
 	console.log("let\'s get this party started - port 3000");
 });
 
