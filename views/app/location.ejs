@@ -22,15 +22,19 @@
 			<hr>
 		</nav>
 
-		<div>
+
 			<h1> <%= detail.name %> </h1>
 			<p> <img src="<%= detail.rating_img_url_large %>" /> <%= detail.review_count %> Reviews</p>
 			<p> Type: <%= detail.categories %> </p>
 			<p> <img src="<%= detail.image_url %>" /> </p>
 			<p> <%= detail.snippet_text %> </p>
-		</div>
 
-		<button>Save</button> 
+		<form method="post" action="/save">
+			<input type="hidden" name="placeName" value="<%= detail.name %>">
+			<input type="hidden" name="planner" value="<%= user.id %>">
+			<button type="submit">Save</button> 
+		</form> 
+
 
 		<% } %> 
 

@@ -7,25 +7,25 @@
 		<link rel="stylesheet" type="text/css" href="/styles/main.css">
 	</head>
 	<body>
-		<% if(!isAuthenticated) { %>
-			<a href='/login'>You must be logged in to view this page</a>
+	<% if(!isAuthenticated) { %>
+		<a href='/login'>You must be logged in to view this page</a>
 
-		<% } else { %>
+	<% } else { %>
 
-		<h1>Welcome Home <%= user.username %>!</h1>
-		<nav>
-			<hr>
-			<button><a href="/home">Home</a></button>
-			<button><a href="/search">Search</a></button>
-			<button><a href="/results">Results</a></button>
-			<button><a href="/logout">Log Out</a></button>
-			<hr>
-		</nav>
+	<h1>Welcome Home <%= user.username %>!</h1>
+	<nav>
+		<hr>
+		<button><a href="/home">Home</a></button>
+		<button><a href="/search">Search</a></button>
+		<button><a href="/results">Results</a></button>
+		<button><a href="/logout">Log Out</a></button>
+		<hr>
+	</nav>
 
-		<h2>Personal Checklist</h2>
+	<h2>Personal Checklist</h2>
 
 
 
-		<% } %> 
+	<% } %> 
 
 <% include ../partials/footer %>

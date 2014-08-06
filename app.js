@@ -20,9 +20,9 @@ app.use(express.static(__dirname + 'public'));
 
 // cookie session set up
 app.use(cookieSession({
-	secret: 'notsosecretkey',
+	secret: process.env.COOKIE_SESSION_KEY,
 	name: 'cookie created by me',
-	maxage: 720000 // 12 min logout timer 
+	maxage: 1440000 // 24 min logout timer 
 }));
 
 // more middleware config - for authorization/authentication
@@ -119,6 +119,20 @@ app.get('/searchFor', function(req, res) {
 	});
 });
 
+// // to search and display to index without login - *** FIX ***
+// app.get('/searchIt', function(req, res) {
+// 	var queryCat = req.query.searchCat || "activity";
+// 	var queryCity = req.query.searchCity || "Chicago";
+// 	// console.log(req.query);
+// 	yelp.search({term: queryCat, location: queryCity}, function(error, data) {
+// 	  console.log(error);
+// 	  console.log(data); 
+// 	  var list = data.businesses; 
+// 	  // res.send(data.businesses); // test
+//   	res.render('site/index', {searchList: list || []}); 
+// 	});
+// });
+
 // app results page
 app.get("/results", function(req, res) {
 	res.render('app/results', {
@@ -126,15 +140,6 @@ app.get("/results", function(req, res) {
 		user: req.user 
 	});
 });
-
-
-// // app location page
-// app.get("/location", function(req, res) {
-// 	res.render('app/location', {
-// 		isAuthenticated: req.isAuthenticated(),
-// 		user: req.user 
-// 	});
-// });
 
 // app location by id 
 app.get("/location/:id", function(req, res){
@@ -158,17 +163,6 @@ app.get("/logout", function(req, res) {
 
 // *** POSTS ***
 
-// sign up new user < signup.ejs
-app.post("/create", function(req, res) {
-	db.planner.createNewUser(req.body.username, req.body.password,
-		function(err) {
-			res.render('site/signup', {message: err.message, username: req.body.username});
-		},
-		function(success) {
-			res.render('site/index', {message: success.message}); 
-		});
-});
-
 // login feature with passport for serialization/deserialize - authenticate && authorize 
 app.post('/login', passport.authenticate('local', {
 	successRedirect: '/home',
@@ -187,9 +181,67 @@ app.post('/login', passport.authenticate('local', {
 // 		});
 // });
 
+// sign up new user < signup.ejs
+app.post("/create", function(req, res) {
+	db.planner.createNewUser(req.body.username, req.body.password,
+		function(err) {
+			res.render('site/signup', {message: err.message, username: req.body.username});
+		},
+		function(success) {
+			res.render('site/index', {message: success.message}); 
+		});
+});
+
 
 // post search results from API and < search.ejs to results.ejs
+
+
 // add item(s) from results.ejs to checklist/home.ejs
+app.post('/saveNow', function(req,res){
+	var id = Number(req.body.planner); // working? how to fix?
+	db.planner.find(id)
+		.success(function(foundPlanner){
+			console.log("The found planner", foundPlanner)
+			console.log("place name", req.body.placeName)
+			var checklist = db.checklist.create({
+				plan: req.body.placeName,
+				plannerId: foundPlanner.id
+			}).success(function(){
+				// res.redirect("/home") // temp fix, to add multiple w/o redirect, need another method
+			});
+		});
+});
+
+// add item from location.ejs, after clicking result to db - REFA
+app.post('/save', function(req,res) {
+	var id = Number(req.body.planner); // working? how to fix?
+	db.planner.find(id)
+		.success(function(foundPlanner){
+			console.log("The found planner", foundPlanner)
+			console.log("place name", req.body.placeName)
+			var checklist = db.checklist.create({
+				plan: req.body.placeName,
+				plannerId: foundPlanner.id
+			}).success(function(){
+				res.redirect("/home")
+			})
+		});
+});
+
+
+// Saved checklist to Display on Planner's 'personal' Home page by retrieve db
+app.get('/home/:id', function(req,res){
+	var id = Number(req.params.id);
+	db.planner.find(id)
+		.success(function(savedList){
+			db.checklist.findAll({
+				where: {
+					plannerId: id
+				}
+			})
+		});
+});
+
 
 // *** PUTS/Update ***
 

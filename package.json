@@ -33,6 +33,10 @@
     "pg": "^3.4.0",
     "request": "^2.39.0",
     "sequelize": "^1.7.9",
-    "sequelize-cli": "^0.2.3"
+    "sequelize-cli": "^0.2.3",
+    "supertest": "^0.13.0"
+  },
+  "devDependencies": {
+    "mocha": "^1.21.3"
   }
 }

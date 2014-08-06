@@ -17,5 +17,24 @@
 		<button class="btn btn-lg"><a href="/login">Log In</a></button>
 		<button class="btn btn-lg"><a href="/signup">Sign Up</a></button>
 
+		<hr>
+
+		<form action="/searchIt">  
+		<p>
+			<label for="cat">Search for: </label> 
+			<input type="text" name="searchCat" id="cat" placeholder="Food or Fun" autofocus> 
+		</p>
+		<p>
+			<label for="city">Search by City: </label>
+			<input type="text" name="searchCity" id="city" placeholder="Enter city">
+		</p>
+		<p>
+			<input type="submit" value="Submit">
+		</p>
+
+	</form> 
+
+<!-- *** FIX - to search and display results without account ***
+ -->	
 
 <% include ../partials/footer %>
