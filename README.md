@@ -35,6 +35,7 @@ An app to plan out `what you want to do` or `where you want to eat` based on a `
 * if no search, but click results, make sure results redirects to search/home
 * search without account
 * request specs and server test 
+* fix home page, after post working 
 
 
 ### Issues

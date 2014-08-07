@@ -14,17 +14,17 @@ var express = require('express'),
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true})); // what is `extended: true`
 app.use(express.static(__dirname + 'public'));
+app.use(methodOverride("_method")); 
 
-require('locus'); 
-
+require('locus');
 
 // *** SESSION PREP *** 
 
-// cookie session set up
+// cookie session set Update
 app.use(cookieSession({
 	secret: process.env.COOKIE_SESSION_KEY,
 	name: 'cookie created by me',
-	maxage: 1440000 // 24 min logout timer 
+	maxage: 2000000 
 }));
 
 // more middleware config - for authorization/authentication
@@ -54,7 +54,7 @@ passport.deserializeUser(function(id, done) {
 var yelp = require("yelp").createClient({ 
 	consumer_key: process.env.YELP_KEY,
 	consumer_secret: process.env.YELP_SECRET,
-	token: process.env.YELP_TOKEN,
+	token: process.env.YELP_TOKEN,  // why are the tokens needed for api to work??
 	token_secret: process.env.YELP_TOKEN_SECRET
 });
 
@@ -62,7 +62,7 @@ var yelp = require("yelp").createClient({
 
 // landing page
 app.get("/", function(req, res) {
-	if (!req.user) { // ??? when was req.user defined ??? 
+	if (!req.user) { 
 		res.render('site/index', {message: null});
 	} else {
 		res.redirect('/home'); 
@@ -74,7 +74,8 @@ app.get("/login", function(req, res) {
 	if (!req.user) {
 		res.render('site/login', {message: req.flash('loginMessage'), username: ""});
 	} else {
-		res.redirect('home');
+		var id = req.user.id;
+		res.redirect('/home/'+id);
 	}
 });
 
@@ -83,18 +84,47 @@ app.get("/signup", function(req, res) {
 	if (!req.user) {
 		res.render('site/signup', {message: req.flash('loginMessage'), username: ""});
 	} else {
-		res.redirect('home');
+		res.redirect('/home');
 	}
 });
 
 // app home page
-app.get("/home", function(req, res) {
-	res.render('app/home', {
-		isAuthenticated: req.isAuthenticated(),
-		user: req.user // ?? user or planner ?? why user? 
-	}); 
-});
+// app.get("/home", function(req, res) {
+// 	var list = []
+// 	res.render('app/home', {
+// 		isAuthenticated: req.isAuthenticated(),
+// 		user: req.user, 
+// 		list: list
+// 	}); 
+// });
 
+app.get("/home", function(req, res) {
+	if (req.user) {
+		var id = req.user.id;
+		// db.planner.find(id).success(function(savedList){
+		// 	db.checklist.findAll({
+		// 		where: {
+		// 			plannerId: id
+		// 		}
+		// 	}).success(function(checklist){
+		// 		console.log("checklist to display: ", checklist); 
+		// 		res.render("app/home", { 
+		// 			isAuthenticated: req.isAuthenticated(),
+		// 			user: req.user,
+		// 			list: checklist
+		// 		})
+		// 	})
+		// });
+		res.redirect("/home/" + id);
+	} else {
+		res.render('app/home', {
+			isAuthenticated: req.isAuthenticated(),
+			user: req.user, 
+			list: []
+		}); 
+	}
+});
+	
 // app search page
 app.get("/search", function(req, res) {
 	res.render('app/search', {
@@ -106,12 +136,12 @@ app.get("/search", function(req, res) {
 // get search param from search.ejs to post on results.ejs 
 app.get('/searchFor', function(req, res) {
 	var queryCat = req.query.searchCat || "food";
-	var queryCity = req.query.searchCity || "New York";
+	var queryCity = req.query.searchCity || "Chicago";
 	var queryZip = req.query.searchZip || 91326; // string or number ???
 	// console.log(req.query);
 	yelp.search({term: queryCat, location: queryCity}, function(error, data) {
-	  console.log(error);
-	  console.log(data); 
+	  console.log("error here: ", error);
+	  console.log("data me: ", data); 
 	  var list = data.businesses; 
 	  // res.send(data.businesses); // test
   	res.render('app/results', {searchList: list || [], 
@@ -215,17 +245,31 @@ app.post('/saveNow', function(req,res){
 });
 
 // add item from location.ejs, after clicking result to db - REFA
-app.post('/save', function(req,res) {
-	var id = Number(req.body.planner); // working? how to fix?
+app.post('/home/:id', function(req,res) {
+	// var id = Number(req.body.planner); // working? how to fix?
+	var id = Number(req.params.id); 
 	db.planner.find(id)
 		.success(function(foundPlanner){
-			console.log("The found planner", foundPlanner)
-			console.log("place name", req.body.placeName)
 			var checklist = db.checklist.create({
 				plan: req.body.placeName,
 				plannerId: foundPlanner.id
-			}).success(function(){
-				res.redirect("/home")
+			}).success(function(findList){
+				console.log("checklist search: ", findList); 
+				db.checklist.findAll({
+					where: {
+						plannerId: req.user.id
+					}
+				})
+				.success(function(checklist){
+					// eval(locus)
+					console.log("please display the list: " + checklist[0]);
+
+					res.redirect("/home");/* {
+						isAuthenticated: req.isAuthenticated(),
+						user: req.user,
+						list: checklist
+					})*/
+				})
 			})
 		});
 });
@@ -241,6 +285,14 @@ app.get('/home/:id', function(req,res){
 					plannerId: id
 				}
 			})
+			.success(function(checklist){
+				console.log("checklist to display: ", checklist); 
+				res.render("app/home", { 
+					isAuthenticated: req.isAuthenticated(),
+					user: req.user,
+					list: checklist
+				})
+			})
 		});
 });
 
@@ -248,6 +300,12 @@ app.get('/home/:id', function(req,res){
 // *** PUTS/Update ***
 
 // *** DELETES ***
+
+// delete from home/:id page for users saved checklist
+app.delete('/home/:id', function(req,res){
+	var id = req.params.id;
+
+})
 
 // 404 page *** make sure at bottom ***
 app.get('*', function(req, res) {
@@ -257,4 +315,6 @@ app.get('*', function(req, res) {
 app.listen(process.env.PORT || 3000, function() {
 	console.log("let\'s get this party started - port 3000");
 });
+
+
 

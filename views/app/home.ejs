@@ -24,6 +24,11 @@
 
 	<h2>Personal Checklist</h2>
 
+		<ul>
+			<% list.forEach(function(items) { %>
+				<li> <%= items.dataValues.plan %>	</li>
+			<% }) %> 
+		</ul>
 
 
 	<% } %> 

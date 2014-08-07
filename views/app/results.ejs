@@ -26,10 +26,9 @@
 
 		<% searchList.forEach(function (item) { %>
 			<p>
-				<a href="/location/<%= item.id %>"><%= item.name %></a> 
+				<h2><a href="/location/<%= item.id %>"><%= item.name %></a></h2>
+					<p><img src="<%= item.rating_img_url %>"> <%= item.review_count %> reviews</p>
 				<ul>
-					<li> Rating: <%= item.rating %> </li>
-					<li> Reviews: <%= item.review_count %> </li>
 					<li> Type: <%= item.categories %> </li>
 					<li> <%= item.snippet_text %> </li>
 				</ul>
