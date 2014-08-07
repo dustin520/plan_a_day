@@ -12,7 +12,7 @@
 
 		<% } else { %>
 
-		<h1>Check this Out!</h1>
+		<h1> DayPlan </h1>
 		<nav>
 			<hr>
 			<button><a href="/home">Home</a></button>
@@ -22,14 +22,15 @@
 			<hr>
 		</nav>
 
+			<h2> <%= detail.name %> </h2>
+				<p> <%= detail.location.display_address[0] %><br><%= detail.location.display_address[2] %></p>
+				<p> <img src="<%= detail.rating_img_url_large %>" /> <%= detail.review_count %> Reviews</p>
+				<p> Type: <%= detail.categories %> </p>
+				<p> <img src="<%= detail.image_url %>" /> </p>
+				<p> <%= detail.snippet_text %> </p>
+				<p><a href="<%= detail.url%>">For more info, check me out on yelp!</a></p>
 
-			<h1> <%= detail.name %> </h1>
-			<p> <img src="<%= detail.rating_img_url_large %>" /> <%= detail.review_count %> Reviews</p>
-			<p> Type: <%= detail.categories %> </p>
-			<p> <img src="<%= detail.image_url %>" /> </p>
-			<p> <%= detail.snippet_text %> </p>
-
-		<form method="post" action="/save">
+		<form method="post" action="/home/<%=user.id%>">
 			<input type="hidden" name="placeName" value="<%= detail.name %>">
 			<input type="hidden" name="planner" value="<%= user.id %>">
 			<button type="submit">Save</button> 
