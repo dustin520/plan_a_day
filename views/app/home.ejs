@@ -12,24 +12,42 @@
 
 	<% } else { %>
 
-	<h1>Welcome Home <%= user.username %>!</h1>
-	<nav>
-		<hr>
-		<button><a href="/home">Home</a></button>
-		<button><a href="/search">Search</a></button>
-		<button><a href="/results">Results</a></button>
-		<button><a href="/logout">Log Out</a></button>
-		<hr>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<a href="/about" class="navbar-brand">DayPlan</a>
+			<button class="btn btn-default navbar-btn"><a href="/home">Home</a></button>
+			<button class="btn btn-default navbar-btn"><a href="/search">Search</a></button>
+			<!-- <button class="btn btn-default navbar-btn"><a href="/results">Results</a></button> -->
+			<button class="btn btn-default navbar-btn navbar-right"><a href="/logout">Log Out</a></button>
+		</div>
 	</nav>
 
-	<h2>Personal Checklist</h2>
+	<header>
+		<h1>Welcome Home <%= user.username %>!</h1>
+	</header>
 
-		<ul>
-			<% list.forEach(function(items) { %>
-				<li> <%= items.dataValues.plan %>	</li>
-			<% }) %> 
-		</ul>
+		<div class="container">
+			<h2>Personal Checklist</h2>
+			<div classs="row">
+				<% list.forEach(function(items) { %>
+				<div class="col-sm-6 col-sm-4">
+					<form method="post" action="/delete/<%=items.dataValues.id%>?_method=delete">
+						<p style="font-size: 1.25em; color: grey"> <%= items.dataValues.plan %>	
+							<input type="submit" class="btn btn-primary btn-xs" value="Delete">
+						</p>
+						<input type="hidden" name="plannerId" id="<%= user.id %>">
+					</form> 
+				</div>
+				<% }) %> 
+			</div>
+		</div>
 
+	<!-- 	DELETE ALL BUTTON NOT WORKING **FIX** -->
+	<!-- 	<form method="post" action="/delete?_method=delete">
+			<input type="submit" class="btn btn-primary btn-sm" value="Delete All">
+			<input type="hidden" name="planId" id="<%= user.id %>">
+		</form>
+ -->
 
 	<% } %> 
 

@@ -88,6 +88,15 @@ app.get("/signup", function(req, res) {
 	}
 });
 
+// static about DayPlan page
+app.get("/about", function(req,res){
+	if (!req.user) {
+		res.render('site/about');
+	} else {
+		res.render('site/about');
+	}
+});
+
 // app home page
 // app.get("/home", function(req, res) {
 // 	var list = []
@@ -302,10 +311,48 @@ app.get('/home/:id', function(req,res){
 // *** DELETES ***
 
 // delete from home/:id page for users saved checklist
-app.delete('/home/:id', function(req,res){
-	var id = req.params.id;
+app.delete('/delete/:id', function(req,res){
+	var checklistId = req.params.id;
+	var plannerId = req.body.plannerId;
+	console.log("checklist id: ", checklistId + "planner id: ", plannerId);
+	db.checklist.find({
+		where: {
+			id: checklistId
+		}
+	}).success(function(foundItem){
+		foundItem.destroy()
+		.success(function(destroyedItem){
+			console.log("recently deleted: " + destroyedItem)
+			res.redirect("/home");
+		})
+	})
+});
 
-})
+// delete all from home/:id, basically delete checklist  ***FIX**
+app.delete('/delete', function(req,res){
+	// var plannerId = Number(req.body.planId);
+	var plannerId = req.user.id; 
+	console.log("plannerId: " + plannerId);
+	db.planner.find({
+		where:{
+			id: plannerId
+		}
+	}).success(function(foundPlanner){
+		console.log("planner is " + foundPlanner)
+		db.checklist.findAll({
+			where: {
+				plannerId: foundPlanner
+			}
+		})
+		}).success(function(foundAllItems){
+			console.log("found items: " + foundAllItems)
+			foundAllItems.destroy()
+			.success(function(destroyedAll){
+				console.log("destroyed all: " + destroyedAll)
+				res.redirect("/home");
+			})
+		})
+});
 
 // 404 page *** make sure at bottom ***
 app.get('*', function(req, res) {

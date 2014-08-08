@@ -12,38 +12,44 @@
 
 		<% } else { %>
 
-		<h1>Results</h1>
-		<nav>
-			<hr>
-			<button><a href="/home">Home</a></button>
-			<button><a href="/search">Search</a></button>
-			<button><a href="/results">Results</a></button>
-			<button><a href="/logout">Log Out</a></button>
-			<hr>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<a href="/about" class="navbar-brand">DayPlan</a>
+				<button class="btn btn-default navbar-btn"><a href="/home">Home</a></button>
+				<button class="btn btn-default navbar-btn"><a href="/search">Search</a></button>
+				<!-- <button><a href="/results">Results</a></button> -->
+				<button class="btn btn-default navbar-btn navbar-right"><a href="/logout">Log Out</a></button>
+			</div>
 		</nav>
 
-		<h2>Search Results</h2><br>
+		<h1>Search Results</h1><br>
+		<div class="container" style="margin: 0 auto">
+			<div class="row">
+				<% searchList.forEach(function (item) { %>
+				<div class="col-sm-6 col-md-4">
+					<div class="caption">
+						<h2><a href="/location/<%= item.id %>"><%= item.name %></a></h2>
+							<p><img src="<%= item.rating_img_url %>"> <%= item.review_count %> reviews</p>
+							<p> Type: <%= item.categories %> </p>
+						<blockquote>
+							<p> <%= item.snippet_text %> </p>
+						</blockquote>
 
-		<% searchList.forEach(function (item) { %>
-			<p>
-				<h2><a href="/location/<%= item.id %>"><%= item.name %></a></h2>
-					<p><img src="<%= item.rating_img_url %>"> <%= item.review_count %> reviews</p>
-				<ul>
-					<li> Type: <%= item.categories %> </li>
-					<li> <%= item.snippet_text %> </li>
-				</ul>
-
-				<form method="post" action="/saveNow">
-					<input type="hidden" name="placeName" value="<%= item.name %>">
-					<input type="hidden" name="planner" value="<%= user.id %>">
-					<button type="submit">Save</button> 
-				</form> 
-				
-			</p>	
-
-			<% }) %> 
+						<form method="post" action="/saveNow">
+							<input type="hidden" name="placeName" value="<%= item.name %>">
+							<input type="hidden" name="planner" value="<%= user.id %>">
+							<button type="submit" class="btn btn-primary btn-sm btn">Save</button> 
+						</form> 
+					</div>
+				</div>
+				<% }) %> 
+			</div>
+		</div>	
 		
 		<% } %>  
+
+		<div>
+		</div>
 
 
 <% include ../partials/footer %>

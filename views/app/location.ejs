@@ -12,30 +12,33 @@
 
 		<% } else { %>
 
-		<h1> DayPlan </h1>
-		<nav>
-			<hr>
-			<button><a href="/home">Home</a></button>
-			<button><a href="/search">Search</a></button>
-			<button><a href="/results">Results</a></button>
-			<button><a href="/logout">Log Out</a></button>
-			<hr>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<a href="/about" class="navbar-brand">DayPlan</a>
+				<button class="btn btn-default navbar-btn"><a href="/home">Home</a></button>
+				<button class="btn btn-default navbar-btn"><a href="/search">Search</a></button>
+				<!-- <button><a href="/results">Results</a></button> -->
+				<button class="btn btn-default navbar-btn navbar-right"><a href="/logout">Log Out</a></button>
+			</div>
 		</nav>
 
-			<h2> <%= detail.name %> </h2>
-				<p> <%= detail.location.display_address[0] %><br><%= detail.location.display_address[2] %></p>
-				<p> <img src="<%= detail.rating_img_url_large %>" /> <%= detail.review_count %> Reviews</p>
-				<p> Type: <%= detail.categories %> </p>
-				<p> <img src="<%= detail.image_url %>" /> </p>
-				<p> <%= detail.snippet_text %> </p>
-				<p><a href="<%= detail.url%>">For more info, check me out on yelp!</a></p>
+		<div class="container">
+			<div class="jumbotron">
+				<h1> <%= detail.name %> </h1>
+					<p> <%= detail.location.display_address[0] %><br><%= detail.location.display_address[2] %></p>
+					<p> <img src="<%= detail.rating_img_url_large %>" /> <%= detail.review_count %> Reviews</p>
+					<p> Type: <%= detail.categories %> </p>
+					<p> <img src="<%= detail.image_url %>" /> </p>
+					<blockquote><p> <%= detail.snippet_text %> </p></blockquote>
+					<p><a href="<%= detail.url%>">For more info, check me out on yelp!</a></p>
 
-		<form method="post" action="/home/<%=user.id%>">
-			<input type="hidden" name="placeName" value="<%= detail.name %>">
-			<input type="hidden" name="planner" value="<%= user.id %>">
-			<button type="submit">Save</button> 
-		</form> 
-
+				<form method="post" action="/home/<%=user.id%>">
+					<input type="hidden" name="placeName" value="<%= detail.name %>">
+					<input type="hidden" name="planner" value="<%= user.id %>">
+					<button type="submit" class="btn btn-primary btn-md">Save</button> 
+				</form> 
+			</div>
+		</div>
 
 		<% } %> 
 

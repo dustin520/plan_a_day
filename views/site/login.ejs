@@ -7,29 +7,34 @@
 			<link rel="stylesheet" type="text/css" href="/styles/main.css">
 	</head>
 	<body>
-		<h1>Log In </h1>
-		<% if(typeof message !== 'undefined') { %>
-		<p style="color:red;">	
-			<%= message %>
-		</p>
-			<% } %>
 
-		<form method="post" action="/login">
-			<p>
-				<label for="username">Username: </label>
-				<input type="text" name="username" id="user" placeholder="Enter username" value="<%= username %>" autofocus>
+		<div class="jumbotron">
+			<h1>Log In </h1>
+			<% if(typeof message !== 'undefined') { %>
+			<p style="color:red;">	
+				<%= message %>
 			</p>
-			<p>
-				<label for="password">Password: </label>
-				<input type="password" name="password" id="pw" placeholder="Enter password">
-			</p>
-			<p>
-				<input type="submit" value="Log In">
-			</p>
+				<% } %>
 
-		</form>
+			<form method="post" action="/login">
+				<p>
+					<label for="username">Username: </label>
+					<input type="text" name="username" id="user" placeholder="Enter username" value="<%= username %>" autofocus>
+				</p>
+				<p>
+					<label for="password">Password: </label>
+					<input type="password" name="password" id="pw" placeholder="Enter password">
+				</p>
+				<p>
+					<input type="submit" class="btn btn-primary btn-lg" role="button" style="color: white" value="Log In">
+				</p>
 
-		<a href="/signup">Don't have an account? Sign up here!</a><br>
-		<a href="/">Or go back for more info</a> 
+			</form>
+
+			<a href="/signup">Don't have an account? Sign up here!</a><br>
+			<a href="/">Or go back for more info</a> 
+		</div>
+
+
 
 <% include ../partials/footer %>

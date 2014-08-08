@@ -7,30 +7,32 @@
 		<link rel="stylesheet" type="text/css" href="styles/main.css">
 	</head>
 	<body>
-		<h1>Sign Up</h1>
-		<p style="color: red;">
-			<% if (message) { %>
-				<%= message %>
-			<% } %>
-		</p>		
 
-		<form method="post" action="/create">
-			<p>
-				<label for="username">Username: </label>
-				<input type="text" name="username" id="user" placeholder="Enter username" value="<%= username %>" autofocus>
-			</p>
-			<p>
-				<label for="password">Password: </label>
-				<input type="password" name="password" id="pw" placeholder="Enter password" 
-			</p>
-			<p>
-				<input type="submit" value="Sign Up!">
-			</p>
+		<div class="jumbotron">
+			<h1>Sign Up</h1>
+			<p style="color: red;">
+				<% if (message) { %>
+					<%= message %>
+				<% } %>
+			</p>		
 
-		</form>
+			<form method="post" action="/create">
+				<p>
+					<label for="username">Username: </label>
+					<input type="text" name="username" id="user" placeholder="Enter username" value="<%= username %>" autofocus>
+				</p>
+				<p>
+					<label for="password">Password: </label>
+					<input type="password" name="password" id="pw" placeholder="Enter password" 
+				</p>
+				<p>
+					<input type="submit" class="btn btn-primary btn-lg" role="button" style="color: white" value="Sign Up!">
+				</p>
 
-		<a href="/login">Have an account already? Log in here!</a><br>
-		<a href="/">Or go back for more info</a> 
+			</form>
 
+			<a href="/login">Have an account already? Log in here!</a><br>
+			<a href="/">Or go back for more info</a> 
+		</div>
 
 <% include ../partials/footer %>

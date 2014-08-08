@@ -4,35 +4,38 @@
 	<head>
 		<title>DayPlan</title>
 		<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/styles/index.css">
 	</head>
 	<body>
-		<h1>Welcome to DayPlan!</h1>
-		<h2>The App to Plan It All</h2>
-		<p style="color: green">
-			<% if (message) { %>
-			<%= message %>
-			<% } %><br>
-		</p>
+		<div class="container" style="margin:auto">
+			<div class="jumbotron">	
+				<h1>Welcome to DayPlan!</h1>
+				<h2>The App to Plan It All</h2>
+				<p style="color: green">
+					<% if (message) { %>
+					<%= message %>
+					<% } %><br>
+				</p>
 
-		<button class="btn btn-lg"><a href="/login">Log In</a></button>
-		<button class="btn btn-lg"><a href="/signup">Sign Up</a></button>
+				<button class="btn btn-primary btn-lg" role="button" ><a style="color: white" href="/login">Log In</a></button>
+				<button class="btn btn-primary btn-lg" role="button"><a style="color: white" href="/signup">Sign Up</a></button>
+			</div>
 
-		<hr>
+			<form action="/searchIt">  
+				<p>
+					<label for="cat">Search for: </label> 
+					<input type="text" name="searchCat" id="cat" placeholder="Food or Fun" autofocus> 
+				</p>
+				<p>
+					<label for="city">Search by City: </label>
+					<input type="text" name="searchCity" id="city" placeholder="Enter city">
+				</p>
+				<p>
+					<input class="btn btn-primary btn-sm" role="button" type="submit" value="Submit" style="color: white;">
+				</p>
+			</form> 
 
-		<form action="/searchIt">  
-		<p>
-			<label for="cat">Search for: </label> 
-			<input type="text" name="searchCat" id="cat" placeholder="Food or Fun" autofocus> 
-		</p>
-		<p>
-			<label for="city">Search by City: </label>
-			<input type="text" name="searchCity" id="city" placeholder="Enter city">
-		</p>
-		<p>
-			<input type="submit" value="Submit">
-		</p>
-
-	</form> 
+		</div>
 
 <!-- *** FIX - to search and display results without account ***
  -->	

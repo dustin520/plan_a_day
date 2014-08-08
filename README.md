@@ -41,6 +41,7 @@ An app to plan out `what you want to do` or `where you want to eat` based on a `
 ### Issues
 * flash messages not working - messages worked with authorize, not after implementing passportLocal - FIXED
 	fix = <% if(typeof message !== 'undefined') { %>
+* fix security issue with viewing others pages 
 
 ### Questions
 * Below -

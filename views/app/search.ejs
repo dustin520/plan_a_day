@@ -12,35 +12,40 @@
 
 		<% } else { %>
 
-		<h1>Search</h1>
-		<nav>
-			<hr>
-			<button><a href="/home">Home</a></button>
-			<button><a href="/search">Search</a></button>
-			<button><a href="/results">Results</a></button>
-			<button><a href="/logout">Log Out</a></button>
-			<hr>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<a href="/about" class="navbar-brand">DayPlan</a>
+				<button class="btn btn-default navbar-btn"><a href="/home">Home</a></button>
+				<button class="btn btn-default navbar-btn"><a href="/search">Search</a></button>
+				<!-- <button><a href="/results">Results</a></button> -->
+				<button class="btn btn-default navbar-btn navbar-right"><a href="/logout">Log Out</a></button>
+			</div>
 		</nav>
+		<header>
+			<h1>Search</h1>
+		</header>
 
-		<form method="get" action="/searchFor">  <!-- why get, not post  -->
-			<p>
-				<label for="cat">Search for: </label> 
-				<input type="text" name="searchCat" id="cat" placeholder="Food or Fun" autofocus> 
-			</p>
-			<p>
-				<label for="city">Search by City: </label>
-				<input type="text" name="searchCity" id="city" placeholder="Enter city">
-			</p>
-			<p>
-				<label for="zipcode">Search by Zipcode: </label>
-				<input type="text" name="searchZip" id="zipcode" placeholder="Enter zip">
-			</p>
-			<p>
-				<input type="submit" value="Submit">
-			</p>
-
-		</form> 
-
+		<div class="container">
+			<div class="jumbotron">
+				<form method="get" action="/searchFor">  <!-- why get, not post  -->
+					<p>
+						<label for="cat">Search for: </label> 
+						<input type="text" name="searchCat" id="cat" placeholder="Food or Fun" autofocus style="width:20em">
+					</p>
+					<p>
+						<label for="city">Search by City: </label>
+						<input type="text" name="searchCity" id="city" placeholder="Enter city" style="width:15em">
+					</p>
+				<!-- 	<p>
+						<label for="zipcode">Search by Zipcode: </label>
+						<input type="text" name="searchZip" id="zipcode" placeholder="Enter zip">
+					</p> -->
+					<p>
+						<input type="submit" class="btn btn-primary btn-md" value="Submit">
+					</p>
+				</form> 
+			</div>
+		</div>
 
 		<% } %> 
 
