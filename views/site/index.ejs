@@ -31,10 +31,21 @@
 					<input type="text" name="searchCity" id="city" placeholder="Enter city">
 				</p>
 				<p>
-					<input class="btn btn-primary btn-sm" role="button" type="submit" value="Submit" style="color: white;">
+					<input class="btn btn-primary btn-sm" role="button" type="submit" value="Search" style="color: white;">
 				</p>
 			</form> 
 
+			<div class="row">
+				<% searchList.forEach(function(search) { %>
+				<div class="col-sm-6 col-md-4">
+					<div class="caption">
+						<h2><%= search.name %></h2>
+							<p><img src="<%= search.rating_img_url %>"> <%= search.review_count %> reviews</p>
+							<p> Type: <%= search.categories %> </p>
+						</div>
+					</div>
+				<% })%>
+			</div>
 		</div>
 
 <!-- *** FIX - to search and display results without account ***

@@ -16,6 +16,8 @@ app.use(bodyParser.urlencoded({extended: true})); // what is `extended: true`
 app.use(express.static(__dirname + 'public'));
 app.use(methodOverride("_method")); 
 
+
+
 require('locus');
 
 // *** SESSION PREP *** 
@@ -63,7 +65,7 @@ var yelp = require("yelp").createClient({
 // landing page
 app.get("/", function(req, res) {
 	if (!req.user) { 
-		res.render('site/index', {message: null});
+		res.render('site/index', {searchList: [], message: null});
 	} else {
 		res.redirect('/home'); 
 	}
@@ -132,6 +134,11 @@ app.get("/home", function(req, res) {
 			list: []
 		}); 
 	}
+
+	res.render('app/home', {
+		isAuthenticated: req.isAuthenticated(),
+		user: req.user 
+	}); 
 });
 	
 // app search page
@@ -160,19 +167,19 @@ app.get('/searchFor', function(req, res) {
 	});
 });
 
-// // to search and display to index without login - *** FIX ***
-// app.get('/searchIt', function(req, res) {
-// 	var queryCat = req.query.searchCat || "activity";
-// 	var queryCity = req.query.searchCity || "Chicago";
-// 	// console.log(req.query);
-// 	yelp.search({term: queryCat, location: queryCity}, function(error, data) {
-// 	  console.log(error);
-// 	  console.log(data); 
-// 	  var list = data.businesses; 
-// 	  // res.send(data.businesses); // test
-//   	res.render('site/index', {searchList: list || []}); 
-// 	});
-// });
+// to search and display to index without login - *** FIX ***
+app.get('/searchIt', function(req, res) {
+	var queryCat = req.query.searchCat || "food";
+	var queryCity = req.query.searchCity || "Chicago";
+	// console.log(req.query);
+	yelp.search({term: queryCat, location: queryCity}, function(error, data) {
+	  console.log(error);
+	  console.log(data); 
+	  var list = data.businesses; 
+	  // res.send(data.businesses); // test
+  	res.render('site/index', {searchList: list || [], message: null}); 
+	});
+});
 
 // app results page
 app.get("/results", function(req, res) {
@@ -272,8 +279,8 @@ app.post('/home/:id', function(req,res) {
 				.success(function(checklist){
 					// eval(locus)
 					console.log("please display the list: " + checklist[0]);
-
 					res.redirect("/home");/* {
+					res.redirect("/home/" + id);/* {
 						isAuthenticated: req.isAuthenticated(),
 						user: req.user,
 						list: checklist
@@ -363,5 +370,9 @@ app.listen(process.env.PORT || 3000, function() {
 	console.log("let\'s get this party started - port 3000");
 });
 
+function ensureAuthentication(req,res,next){
+	if(req.isAuthenticated()) {return next(); }
+	res.redirect('')
+}
 
 

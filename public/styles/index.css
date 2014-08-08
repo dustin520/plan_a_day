@@ -1,5 +1,6 @@
-.jumbotron {
+body {
   background: url(http://cdn.androidpolice.com/wp-content/uploads/2013/09/nexusae0_placeit-sleep-score-breakdown-and-tips.png);
   background-position: center;
+  background-color: green;
 }
 
