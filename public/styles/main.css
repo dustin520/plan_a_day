@@ -1,0 +1,29 @@
+body {
+	font-family: 'Raleway', sans-serif;
+}
+
+.jumbotron {
+	font-family: 'Raleway', sans-serif;
+	background: url(http://www.hoteldesartistes.com/images/rome-restaurants.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+a {
+	font-family: 'Raleway', sans-serif;
+}
+
+button {
+	font-family: 'Raleway', sans-serif;
+}
+
+input {
+	font-family: 'Raleway', sans-serif;
+}
+
+.btn {
+	font-family: 'Raleway', sans-serif;
+}
+
+
+

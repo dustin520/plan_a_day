@@ -1,38 +1,44 @@
-<!DOCTYPE html>
+<% include ../partials/header %>
 
-<html>
-	<head>
 		<title>Login</title>
-			<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-			<link rel="stylesheet" type="text/css" href="/styles/main.css">
+			<link rel="stylesheet" type="text/css" href="/styles/user.css">
 	</head>
+
 	<body>
+		<div class="container" style="margin:auto">
+			<div class="jumbotron">
+				<div class="row">	
+					<div class="col-sm-6 col-md-offset-4 col-md-4">
+						<h1>Log In </h1>
+						<% if(typeof message !== 'undefined') { %>
+						<p style="color:red;">	
+							<%= message %>
+						</p>
+							<% } %>	
+					</div>
+				</div>
 
-		<div class="jumbotron">
-			<h1>Log In </h1>
-			<% if(typeof message !== 'undefined') { %>
-			<p style="color:red;">	
-				<%= message %>
-			</p>
-				<% } %>
+				<div class="row">
+					<div class="col-sm-6 col-md-offset-4 col-md-4">
+						<form method="post" action="/login">
+							<p>
+								<label for="username"></label>
+								<input type="text" name="username" id="user" placeholder="username" value="<%= username %>" autofocus>
+							</p>
+							<p>
+								<label for="password"></label>
+								<input type="password" name="password" id="pw" placeholder="password">
+							</p>
+							<p>
+								<input type="submit" class="btn btn-primary btn-lg" role="button" style="color: white" value="Log In">
+							</p>
+						</form>
+						<a href="/signup">Don't have an account? Sign up here!</a><br>
+						<a href="/">Or go back to try a search</a> 
+					</div>
+				</div>
 
-			<form method="post" action="/login">
-				<p>
-					<label for="username"></label>
-					<input type="text" name="username" id="user" placeholder="username" value="<%= username %>" autofocus>
-				</p>
-				<p>
-					<label for="password"></label>
-					<input type="password" name="password" id="pw" placeholder="password">
-				</p>
-				<p>
-					<input type="submit" class="btn btn-primary btn-lg" role="button" style="color: white" value="Log In">
-				</p>
-
-			</form>
-
-			<a href="/signup">Don't have an account? Sign up here!</a><br>
-			<a href="/">Or go back for try a search</a> 
+			</div>
 		</div>
 
 

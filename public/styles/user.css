@@ -6,8 +6,8 @@
   font-family: 'Raleway', sans-serif;
 }
 body {
-  font-family: 'Raleway', sans-serif;
-  background-color: #ecf0f1;
+	  font-family: 'Raleway', sans-serif;
+	  background-color: #ecf0f1;
 }
 
 .btn {
@@ -22,18 +22,6 @@ body {
 	border-color:#e74c3c;
 }
 
-
-.btn-cust {
-	width: 100%;
-}
-
-.input-cust {
-	border-radius: 0px;
-	padding: 20px;
-	font-size: 16pt;
-}
-.input-cust:focus {
-	outline: none;
-	border-color: none;
-	box-shadow: none;
+input {
+	color: black;
 }

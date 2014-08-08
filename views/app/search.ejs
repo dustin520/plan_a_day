@@ -1,10 +1,8 @@
-<!DOCTYPE html>
+<% include ../partials/header %>
 
-<html>
-	<head>
+
 		<title>Search</title>
-		<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="/styles/search.css">
+		<link rel="stylesheet" type="text/css" href="/styles/main.css">
 	</head>
 	<body>
 		<% if(!isAuthenticated) { %>
@@ -12,36 +10,27 @@
 
 		<% } else { %>
 
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<a href="/about" class="navbar-brand">DayPlan</a>
-				<button class="btn btn-default navbar-btn"><a href="/home">Home</a></button>
-				<button class="btn btn-default navbar-btn"><a href="/search">Search</a></button>
-				<!-- <button><a href="/results">Results</a></button> -->
-				<button class="btn btn-default navbar-btn navbar-right"><a href="/logout">Log Out</a></button>
-			</div>
-		</nav>
-
+<% include ../partials/navbar %>
 
 		<div class="container">
 		<h1>Search</h1>
 			<div class="jumbotron">
-				<form method="get" action="/searchFor">  <!-- why get, not post  -->
-					<p>
-						<label for="cat">Search for: </label> 
-						<input type="text" name="searchCat" id="cat" placeholder="food or fun" autofocus style="width:20em">
-					</p>
-					<p>
-						<label for="city">Search in: </label>
-						<input type="text" name="searchCity" id="city" placeholder="city, zipcode, wherever your heart desires" style="width:25em">
-					</p>
-				<!-- 	<p>
-						<label for="zipcode">Search by Zipcode: </label>
-						<input type="text" name="searchZip" id="zipcode" placeholder="Enter zip">
-					</p> -->
-					<p>
-						<input type="submit" class="btn btn-primary btn-md" style="width:35em" value="Find">
-					</p>
+				<form method="get" action="/searchFor">  
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 col-md-4">
+							<p>
+								<label for="cat">Search for: </label> 
+								<input type="text" name="searchCat" id="cat" placeholder="food or fun" autofocus style="width:20em">
+							</p>
+							<p>
+								<label for="city">Search in: </label>
+								<input type="text" name="searchCity" id="city" placeholder="city, zipcode, wherever your heart desires" style="width:20em">
+							</p>
+							<p>
+								<input type="submit" class="btn btn-primary btn-md" style="width:20em" value="Find">
+							</p>
+						</div>
+					</div>
 				</form> 
 			</div>
 		</div>

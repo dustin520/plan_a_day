@@ -1,38 +1,46 @@
-<!DOCTYPE html>
+<% include ../partials/header %>
 
-<html>
-	<head>
 		<title>Sign Up</title>
-		<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="styles/main.css">
+		<link rel="stylesheet" type="text/css" href="styles/user.css">
 	</head>
+
 	<body>
+		<div class="container" style="margin:auto">
+			<div class="jumbotron">
+				<div class="row">
+					<div class="col-sm-6 col-md-offset-4 col-md-4">
+						<h1>Sign Up</h1>
+						<p style="color: red;">
+							<% if (message) { %>
+								<%= message %>
+							<% } %>
+						</p>		
+					</div>
+				</div>
 
-		<div class="jumbotron">
-			<h1>Sign Up</h1>
-			<p style="color: red;">
-				<% if (message) { %>
-					<%= message %>
-				<% } %>
-			</p>		
+				<div class="row">
+					<div class="col-sm-6 col-md-offset-4 col-md-4">
+						<form method="post" action="/create">
+							<div>
+								<p>
+									<label for="username"></label>
+									<input type="text" name="username" id="user" placeholder="username" value="<%= username %>" autofocus>
+								</p>
+								<p>
+									<label for="password"></label>
+									<input type="password" name="password" id="pw" placeholder="password" 
+								</p>
+								<p>
+									<input type="submit" class="btn btn-primary btn-lg" role="button" style="color: white" value="Sign Up!">
+								</p>
+							</div>
+						</form>
+						<a href="/login">Have an account already? Log in here!</a><br>
+						<a href="/">Or go back to try a search</a> 
+					</div>
+				</div>	
 
-			<form method="post" action="/create">
-				<p>
-					<label for="username"></label>
-					<input type="text" name="username" id="user" placeholder="username" value="<%= username %>" autofocus>
-				</p>
-				<p>
-					<label for="password"></label>
-					<input type="password" name="password" id="pw" placeholder="password" 
-				</p>
-				<p>
-					<input type="submit" class="btn btn-primary btn-lg" role="button" style="color: white" value="Sign Up!">
-				</p>
-
-			</form>
-
-			<a href="/login">Have an account already? Log in here!</a><br>
-			<a href="/">Or go back to try a search</a> 
+			</div>
 		</div>
 
 <% include ../partials/footer %>

@@ -1,9 +1,6 @@
-<!DOCTYPE html>
+<% include ../partials/header %>
 
-<html>
-	<head>
 		<title>Results</title>
-		<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="/styles/main.css">
 	</head>
 	<body>
@@ -12,15 +9,7 @@
 
 		<% } else { %>
 
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<a href="/about" class="navbar-brand">DayPlan</a>
-				<button class="btn btn-default navbar-btn active"><a href="/home">Home</a></button>
-				<button class="btn btn-default navbar-btn"><a href="/search">Search</a></button>
-				<!-- <button><a href="/results">Results</a></button> -->
-				<button class="btn btn-default navbar-btn navbar-right"><a href="/logout">Log Out</a></button>
-			</div>
-		</nav>
+<% include ../partials/navbar %>
 
 		<div class="container" style="margin: 0 auto">
 		<h1>Search Results</h1>
