@@ -22,8 +22,8 @@
 			</div>
 		</nav>
 
-		<h1>Search Results</h1><br>
 		<div class="container" style="margin: 0 auto">
+		<h1>Search Results</h1>
 			<div class="row">
 				<% searchList.forEach(function (item) { %>
 				<div class="col-sm-6 col-md-4">
@@ -38,7 +38,7 @@
 						<form method="post" action="/saveNow">
 							<input type="hidden" name="placeName" value="<%= item.name %>">
 							<input type="hidden" name="planner" value="<%= user.id %>">
-							<button type="submit" class="btn btn-primary btn-sm btn">Save</button> 
+							<button type="submit" class="btn btn-primary btn-sm btn" style="width:25em">Save Now</button> 
 						</form> 
 					</div>
 				</div>

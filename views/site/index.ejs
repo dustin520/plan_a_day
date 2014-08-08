@@ -4,7 +4,8 @@
 	<head>
 		<title>DayPlan</title>
 		<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="/styles/index.css">
+		<link href='http://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="styles/index.css">
 	</head>
 	<body>
 		<div class="container" style="margin:auto">
@@ -16,24 +17,29 @@
 					<%= message %>
 					<% } %><br>
 				</p>
-
-				<button class="btn btn-primary btn-lg" role="button" ><a style="color: white" href="/login">Log In</a></button>
-				<button class="btn btn-primary btn-lg" role="button"><a style="color: white" href="/signup">Sign Up</a></button>
+				<div class="row">
+					<a class="btn btn-primary btn-lg col-xs-5" href="/login">Log In</a>
+					<a class="btn btn-primary btn-lg col-xs-offset-2 col-xs-5" href="/signup">Sign Up</a>
+				</div>
 			</div>
 
-			<form action="/searchIt">  
-				<p>
-					<label for="cat">Search for: </label> 
-					<input type="text" name="searchCat" id="cat" placeholder="Food or Fun" autofocus> 
-				</p>
-				<p>
-					<label for="city">Search by City: </label>
-					<input type="text" name="searchCity" id="city" placeholder="Enter city">
-				</p>
-				<p>
-					<input class="btn btn-primary btn-sm" role="button" type="submit" value="Search" style="color: white;">
-				</p>
-			</form> 
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-4">
+					<form action="/searchIt">  
+						<p class="form-group">
+							<label for="cat">Search for: </label> 
+							<input  class="form-control input-cust" type="text" name="searchCat" id="cat" placeholder="food or fun" autofocus> 
+						</p>
+						<p class="form-group">
+							<label for="city">Search a City: </label>
+							<input class="form-control input-cust" type="text" name="searchCity" id="city" placeholder="city, zip, anywhere">
+						</p>
+						<p>
+							<input class="btn btn-primary btn-lg btn-cust" role="button" type="submit" value="Go" >
+						</p>
+					</form> 
+				</div>
+			</div>
 
 			<div class="row">
 				<% if (searchList === undefined) { %>

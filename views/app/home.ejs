@@ -22,24 +22,32 @@
 		</div>
 	</nav>
 
-	<header>
-		<h1>Welcome Home <%= user.username %>!</h1>
-	</header>
 
+		<div class="container">
+		<header>
+			<h1>Welcome Home <%= user.username %>!</h1>
+		</header>
 		<h2 style="text-align:center">Personal Checklist</h2>
 		<hr>
-		<div class="container">
 			<div classs="row">
-				<% list.forEach(function(items) { %>
-				<div class="col-sm-6 col-sm-4">
+				<div class="col-xs-offset-1 col-xs-10">
+					<div class="row">
+				<% list.forEach(function(items, index) { %>
+				<div class="col-xs-12 col-sm-6 col-md-3 ">
 					<form method="post" action="/delete/<%=items.dataValues.id%>?_method=delete">
-						<p style="font-size: 1.25em; color: grey"> <%= items.dataValues.plan %>	
+						<div class="row">
+						<p class="col-xs-5 col-md-8" style="font-size: 1.25em; color: grey"> <%= items.dataValues.plan %>	
+						</p>
+						<p class="col-xs-6 col-offset-xs-1 col-md-3 col-offset-md-1" >
 							<input type="submit" class="btn btn-primary btn-xs" value="Delete">
 						</p>
 						<input type="hidden" name="plannerId" id="<%= user.id %>">
+					</div>
 					</form> 
 				</div>
 				<% }) %> 
+				</div>
+			</div>
 			</div>
 		</div>
 

@@ -1,7 +1,44 @@
-.jumbotron {
-  background: url(http://www.meltingbutter.com/wp-content/uploads/2014/06/363.Blog_London-Restaurant-Find-Dishoom-Shoreditch_Nina3.jpg);
+.container .jumbotron {
   background-position: center;
-  background-color: green;
-  bak
+  border-radius: 0;
+  background-color: #2c3e50;
+  color:#ecf0f1;
+  font-family: 'Raleway', sans-serif;
+}
+body {
+	  font-family: 'Raleway', sans-serif;
+	  background-color: #ecf0f1;
 }
 
+.box {
+	background-position: center;
+}
+
+.btn {
+	color:white;
+	border-color: #f39c12;
+	background-color: #f39c12;
+	border-radius: 0px;
+}
+
+.btn:hover {
+	background-color: #c0392b;
+	border-color:#e74c3c;
+}
+
+
+
+.btn-cust {
+	width: 100%;
+}
+
+.input-cust {
+	border-radius: 0px;
+	padding: 20px;
+	font-size: 16pt;
+}
+.input-cust:focus {
+	outline: none;
+	border-color: none;
+	box-shadow: none;
+}
