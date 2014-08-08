@@ -36,6 +36,8 @@
 			</form> 
 
 			<div class="row">
+				<% if (searchList === undefined) { %>
+				<% } else { %>
 				<% searchList.forEach(function(search) { %>
 				<div class="col-sm-6 col-md-4">
 					<div class="caption">
@@ -45,6 +47,7 @@
 						</div>
 					</div>
 				<% })%>
+				<% } %>
 			</div>
 		</div>
 

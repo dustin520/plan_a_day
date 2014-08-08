@@ -4,6 +4,8 @@ function Checklist(sequelize, DataTypes) {
 
 	var	Checklist = sequelize.define('checklist', {
 		plan: DataTypes.STRING,
+		category: DataTypes.STRING,
+		link: DataTypes.TEXT, 
 		plannerId: {
 			type: DataTypes.INTEGER,
 			foreignKey: true

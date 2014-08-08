@@ -13,7 +13,7 @@ var express = require('express'),
 // set up for: 1. views to be read as ejs, 2. forms to be parsed, 3. access to public folder for styling;
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true})); // what is `extended: true`
-app.use(express.static(__dirname + 'public'));
+app.use(express.static(__dirname + '/public'));
 app.use(methodOverride("_method")); 
 
 
@@ -236,7 +236,8 @@ app.post("/create", function(req, res) {
 			res.render('site/signup', {message: err.message, username: req.body.username});
 		},
 		function(success) {
-			res.render('site/index', {message: success.message}); 
+			var searchList = [];
+			res.render('site/index', {message: success.message, searchList: searchList}); 
 		});
 });
 

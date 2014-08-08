@@ -12,6 +12,8 @@ module.exports = {
     	createdAt: DataTypes.DATE,
     	updatedAt: DataTypes.DATE,
     	plan: DataTypes.STRING,
+        category: DataTypes.STRING,
+        link: DataTypes.TEXT, 
     	plannerId: {
     		type: DataTypes.INTEGER,
     		foreignKey: true
