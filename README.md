@@ -1,8 +1,6 @@
 
 # DayPlan
 
-## A Plan Your Day Kind of App
-
 ### Overview
 Figure out `what you want to do` or `where you want to eat` based on a `location` that you would like to visit.
 
@@ -21,7 +19,8 @@ friends. That, I think would be helpful. And now it's possible, with DayPlan.
 * Passport
 * Yelp API
 
-### Check out the app here: dayplan.herokuapp.com
+### Check out the app here: 
+dayplan.herokuapp.com
 
 
 
