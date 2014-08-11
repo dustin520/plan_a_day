@@ -1,68 +1,27 @@
 
 # DayPlan
 
-## Plan-a-Day App
+## A Plan Your Day Kind of App
 
-## Wk 5 - Project 1
+### Overview
+Figure out `what you want to do` or `where you want to eat` based on a `location` that you would like to visit.
 
-### Purpose
-An app to plan out `what you want to do` or `where you want to eat` based on a `location`.
+### Motivation
+As people seem to be getting busier by the day, we need tools to help us plan what we do, like todo lists and calendars. What about for when we
+travel and visit new cities. That's what itineraries are for. But what if we want recommendations. We ask our friends. 
 
-### Features
-* create user account to make and save lists
-* search by location to display top 10 results of places to eat and things to do
-* add items to your personal checklist
+What if there was something that could help us share our itineraries and places we visit with our reviews after we visit it, and share that with our
+friends. That, I think would be helpful. And now it's possible, with DayPlan. 
 
-### MVP
-* 2 Models with association - CHECK
-* partials and views - IN PROGRESS
-* handle invalid data for incorrect input, display error messages, validate sign up -CHECK
-* secure passwords - CHECK
-* external APIs
-* Heroku Deployment
-* Authentication and Authorization - CHECK 
-* Testing - request specs that verify pages return 200 response and model specs that verify validations 
+### Built With:
+* Node.js
+* Express
+* PostgreSQL
+* Sequelize
+* Passport
+* Yelp API
 
-### Complete
-* validate input for user length, password length, duplicate user with messages upon sign up
-* secure passwords - hash/salt, saved in db
-* authentication/authorization 
-
-### In Progress
-* figure out api restictions, etc 
-* set up reamining routes
-* if no search and press enter, alert user
-* if no search, but click results, make sure results redirects to search/home
-* search without account
-* request specs and server test 
-* fix home page, after post working 
-
-
-### Issues
-* flash messages not working - messages worked with authorize, not after implementing passportLocal - FIXED
-	fix = <% if(typeof message !== 'undefined') { %>
-* fix security issue with viewing others pages 
-
-### Questions
-* Below -
-1. 
-	res.render('app/home', {
-		isAuthenticated: req.isAuthenticated(),
-		user: req.user // ?? user or planner ?? why user? 
-	}); 
-2. supposed to be `loginMessage`? or just {message} ??
-	return done(err, flash('loginMessage', 'Oops, something went wrong'))
-	- fixed with
-	 message: req.flash('loginMessage') 
-
-### Additional
-* category column for checklist
-* notes column for checklist
-* map interface
-* option to add multiple items to list before routing,  or redirect immediately 
-* delete and update checklist 
-* log in immediately with sign up
-* search on each page, so can use app without loggin in, but can't save
+### Check out the app here: dayplan.herokuapp.com
 
 
 
