@@ -16,11 +16,11 @@ friends. That, I think would be helpful. And now it's possible, with DayPlan.
 * Express
 * PostgreSQL
 * Sequelize
-* Passport
+* Passport/Bcrypt
 * Yelp API
 
 ### Check out the app here: 
-dayplan.herokuapp.com
+[DayPlan on Heroku](dayplan.herokuapp.com)
 
 
 
